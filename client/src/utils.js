@@ -1,0 +1,1 @@
+export const getURI = (hostname, port) => `http://${hostname}:${port}`;
