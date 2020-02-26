@@ -25,8 +25,12 @@ const PORT = 5000;
 
 server.listen(PORT);
 
+io.on('connect', socket => {
+  console.log(`Socket with id ${socket.id} connected`);
+})
+
 // enable cors
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://imac-dev:3000'}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -43,7 +47,7 @@ app.get('/', authMiddleware(secret), (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html');
 });
 
-app.get('/checkToken', authMiddleware(secret), (req, res) => {
+app.get('/api/checkToken', authMiddleware(secret), (req, res) => {
   res.sendStatus(200);
 })
 

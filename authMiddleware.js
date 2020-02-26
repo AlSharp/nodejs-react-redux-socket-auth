@@ -5,9 +5,10 @@ module.exports = secret => (req, res, next) => {
   const token = req.body.token ||
     req.query.token ||
     req.headers['x-access-token'] ||
-    req. cookies.token;
+    req.cookies.token;
 
   if (!token) {
+    console.log('no token');
     res.status(401).send('Unauthorized: No token provided');
   } else {
     jwt.verify(token, secret, (error, decoded) => {

@@ -19,6 +19,7 @@ const Login = styled(({className, history}) => {
     event.preventDefault();
     fetch(`${getURI('imac-dev', 5000)}/api/user/authenticate`, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({email, password}),
       headers: {
         'Content-Type': 'application/json'
